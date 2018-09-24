@@ -5,15 +5,35 @@ import akka.event.Logging
 import language.postfixOps
 import scala.concurrent.duration._
 
+/**
+  * Config for the Pet actor
+  *
+  * @param agingInterval how quick the pet should age
+  * @param hungerInterval how frequently the pet should become hungry
+  * @param sleepInterval how frequently the pet should go to sleep
+  * @param poopTimeout how soon after a meal the pet should poop
+  * @param sleepTimeout how long the pet should sleep
+  * @param sicknessTimeout how long before the pet should become sick if not fed
+  */
 case class PetActorConfig(agingInterval: FiniteDuration = 10 minutes,
                           hungerInterval: FiniteDuration = 1 minute,
                           sleepInterval: FiniteDuration = 2 minutes,
                           poopTimeout: FiniteDuration = 30 seconds,
                           sleepTimeout: FiniteDuration = 1 minute,
                           sicknessTimeout: FiniteDuration = 30 seconds)
-
+/**
+  * Pet actor
+  *
+  * Responds to PetCommands
+  *
+  * Implements the basic requirements as per [[https://gist.github.com/davidvuong/90f8ac0916dd3e14fad014bc814614ff]]
+  *
+  * @param owner ref to the Owner actor
+  * @param petActorConfig configuration
+  */
 class PetActor(owner: ActorRef, petActorConfig: PetActorConfig) extends Actor with Timers {
   val log = Logging(context.system, this)
+  // (☉_☉) it's OK to use a var and no synchronisation here because the actor only processes a single message at a time
   var me: Option[Pet] = None
   override def receive: Receive = {
     case Rise(name) =>

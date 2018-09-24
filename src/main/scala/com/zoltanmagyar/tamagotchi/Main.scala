@@ -7,6 +7,18 @@ import scala.concurrent.Await
 import scala.concurrent.duration._
 import scala.io.StdIn
 
+/**
+  * Main entry point
+  *
+  * Reads commands from the console and sends them to the Pet actor
+  *
+  * Supported commands are:
+  *   activate <name> - creates a new pet with this name
+  *   feed meal - feeds the pet with a nutritious meal
+  *   feed snack - feed the pet with a tasty snack
+  *   sleep - puts the pet to sleep
+  *   exit - exits the program (maybe)
+  */
 object Main extends App {
   val system = ActorSystem("tamagotchi")
   val owner = system.actorOf(Props[OwnerActor], "owner")

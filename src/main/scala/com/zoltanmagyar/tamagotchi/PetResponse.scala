@@ -34,5 +34,5 @@ case object IPooped extends PetResponse {
   val message: String = "Oops! I did it again"
 }
 case object ImSick extends PetResponse {
-  val message: String = "I'm sick."
+  val message: String = "I'm a sick dude!"
 }
