@@ -9,5 +9,5 @@ lazy val tamagotchi = (project in file("."))
     name := "Tamagotchi",
     libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.5.16",
     libraryDependencies += "com.typesafe.akka" %% "akka-testkit" % "2.5.16" % Test,
-    libraryDependencies += "org.scalatest" % "scalatest_2.12" % "3.0.5" % "test",
+    libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % Test,
   )

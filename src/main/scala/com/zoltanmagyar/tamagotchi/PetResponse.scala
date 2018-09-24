@@ -30,9 +30,6 @@ case object ImSleeping extends PetResponse {
 case object ImAwake extends PetResponse {
   val message: String = "I love a snooze :) Buzzing now!"
 }
-case object ImSleepy extends PetResponse {
-  val message: String = "I'm sleepy. Going to snooze..."
-}
 case object IPooped extends PetResponse {
   val message: String = "Oops! I did it again"
 }
